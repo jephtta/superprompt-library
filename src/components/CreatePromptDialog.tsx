@@ -46,11 +46,11 @@ export function CreatePromptDialog({ open, onClose, onCreated }: CreatePromptDia
         content: content.trim(),
         category,
         tags: tags.split(',').map((t) => t.trim()).filter(Boolean),
-        status: 'active',
+        status: 'pending_review',
         suppressedManually: false,
         createdBy: user.uid,
       });
-      toast.success('Prompt created');
+      toast.success('Prompt submitted for review');
       setTitle('');
       setContent('');
       setCategory('general');
