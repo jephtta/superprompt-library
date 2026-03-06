@@ -109,16 +109,16 @@ export function AdminPage() {
       {showActions && (
         <div className="flex items-center gap-1">
           {prompt.status === 'pending_review' && (
-            <Button variant="ghost" size="sm" onClick={() => handleApprove(prompt)} className="h-7 w-7 p-0 text-green-500 hover:text-green-400">
+            <Button variant="ghost" size="sm" onClick={() => handleApprove(prompt)} aria-label="Approve prompt" className="h-7 w-7 p-0 text-green-500 hover:text-green-400">
               <Check className="h-4 w-4" />
             </Button>
           )}
           {prompt.status !== 'suppressed' && (
-            <Button variant="ghost" size="sm" onClick={() => handleSuppress(prompt)} className="h-7 w-7 p-0 text-yellow-500 hover:text-yellow-400">
+            <Button variant="ghost" size="sm" onClick={() => handleSuppress(prompt)} aria-label="Suppress prompt" className="h-7 w-7 p-0 text-yellow-500 hover:text-yellow-400">
               <X className="h-4 w-4" />
             </Button>
           )}
-          <Button variant="ghost" size="sm" onClick={() => handleDelete(prompt)} className="h-7 w-7 p-0 text-red-500 hover:text-red-400">
+          <Button variant="ghost" size="sm" onClick={() => handleDelete(prompt)} aria-label="Delete prompt" className="h-7 w-7 p-0 text-red-500 hover:text-red-400">
             <Trash2 className="h-3.5 w-3.5" />
           </Button>
         </div>

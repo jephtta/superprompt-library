@@ -1,73 +1,81 @@
-# React + TypeScript + Vite
+# SuperPrompt Library
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An internal web app for managing and searching your team's AI prompts.
+Users sign in with Google, browse a categorized prompt library, and copy prompts
+to their clipboard with one click.
 
-Currently, two official plugins are available:
+## Live URL
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+https://nodal-seer-287420.web.app
 
-## React Compiler
+## Prerequisites
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Node.js 18+
+- A Firebase project with Firestore and Authentication (Google provider) enabled
+- (Optional) An Algolia account for full-text search
 
-## Expanding the ESLint configuration
+## Local Setup
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+```bash
+# 1. Clone the repo
+git clone https://github.com/jephtta/superprompt-library.git
+cd superprompt-library
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+# 2. Install dependencies
+npm install
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+# 3. Copy the env template and fill in your values
+cp .env.local.example .env.local
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# 4. Start the dev server
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Environment Variables
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Create a `.env.local` file in the project root with these values:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+| Variable                          | Description                                      |
+| --------------------------------- | ------------------------------------------------ |
+| `VITE_FIREBASE_API_KEY`           | Firebase project API key                         |
+| `VITE_FIREBASE_AUTH_DOMAIN`       | Firebase auth domain (e.g. `project.firebaseapp.com`) |
+| `VITE_FIREBASE_PROJECT_ID`       | Firebase project ID                              |
+| `VITE_FIREBASE_STORAGE_BUCKET`   | Firebase storage bucket                          |
+| `VITE_FIREBASE_MESSAGING_SENDER_ID` | Firebase messaging sender ID                  |
+| `VITE_FIREBASE_APP_ID`           | Firebase app ID                                  |
+| `VITE_FIREBASE_MEASUREMENT_ID`   | Google Analytics measurement ID (optional)       |
+| `VITE_ALGOLIA_APP_ID`            | Algolia application ID (optional — falls back to client-side search) |
+| `VITE_ALGOLIA_API_KEY`           | Algolia search-only API key (optional)           |
+
+All `VITE_FIREBASE_*` values are available in your Firebase Console under Project Settings.
+
+## Running Tests
+
+```bash
+# Install Playwright browsers (first time only)
+npx playwright install
+
+# Run all tests
+npx playwright test
+
+# Run smoke tests only
+npx playwright test e2e/smoke.spec.ts
 ```
+
+## Building for Production
+
+```bash
+npm run build
+```
+
+Output goes to `dist/`. Deploy to Firebase Hosting with `firebase deploy`.
+
+## Tech Stack
+
+- **Frontend**: React 19 + TypeScript + Vite
+- **Styling**: Tailwind CSS v4 + shadcn/ui
+- **Database**: Firebase Firestore
+- **Auth**: Firebase Authentication (Google OAuth)
+- **Search**: Algolia (with client-side fallback)
+- **Hosting**: Firebase Hosting
+- **Tests**: Playwright

@@ -54,7 +54,7 @@ export function Layout({ children }: { children: ReactNode }) {
           {user && (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="h-8 w-8 rounded-full p-0">
+                <Button variant="ghost" aria-label="User menu" className="h-8 w-8 rounded-full p-0">
                   <Avatar className="h-8 w-8">
                     <AvatarImage src={user.photoURL || undefined} />
                     <AvatarFallback className="bg-indigo-600 text-white text-xs">

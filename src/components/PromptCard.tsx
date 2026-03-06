@@ -39,11 +39,11 @@ export function PromptCard({ prompt, onView }: PromptCardProps) {
           </CardTitle>
           <div className="flex items-center gap-1 shrink-0">
             {onView && (
-              <Button variant="ghost" size="sm" onClick={() => onView(prompt)} className="h-7 w-7 p-0 text-gray-500 hover:text-white">
+              <Button variant="ghost" size="sm" onClick={() => onView(prompt)} aria-label="View prompt" className="h-7 w-7 p-0 text-gray-500 hover:text-white">
                 <Eye className="h-3.5 w-3.5" />
               </Button>
             )}
-            <Button variant="ghost" size="sm" onClick={handleCopy} className="h-7 w-7 p-0 text-gray-500 hover:text-white">
+            <Button variant="ghost" size="sm" onClick={handleCopy} aria-label={copied ? 'Copied' : 'Copy prompt'} className="h-7 w-7 p-0 text-gray-500 hover:text-white">
               {copied ? <Check className="h-3.5 w-3.5 text-green-500" /> : <Copy className="h-3.5 w-3.5" />}
             </Button>
           </div>

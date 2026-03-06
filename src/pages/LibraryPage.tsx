@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Plus, Loader2 } from 'lucide-react';
 import { CATEGORIES, type Prompt } from '@/types';
+import { toast } from 'sonner';
 
 export function LibraryPage() {
   const [prompts, setPrompts] = useState<Prompt[]>([]);
@@ -22,8 +23,8 @@ export function LibraryPage() {
         selectedCategory ? { category: selectedCategory } : undefined
       );
       setPrompts(data.filter((p) => p.status === 'active'));
-    } catch (err) {
-      console.error('Failed to load prompts:', err);
+    } catch {
+      toast.error('Failed to load prompts');
     } finally {
       setLoading(false);
     }

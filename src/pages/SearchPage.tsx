@@ -75,6 +75,7 @@ export function SearchPage() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search by title, content, or tags..."
+            aria-label="Search prompts"
             className="bg-[#111] border-[#222] text-white pl-10 h-11"
             autoFocus
           />

@@ -165,6 +165,14 @@ These are parsed by `parseSentinels()` in `server/src/index.ts`. Format is rigid
 | **.claude/memory/**       | On demand          | Feature-specific deep dives                    |
 | **Inline comments**       | When code is read  | Non-obvious "why" explanations                 |
 
+## Current State
+
+- **Deploy URL**: https://nodal-seer-287420.web.app
+- **GitHub Repo**: https://github.com/jephtta/superprompt-library
+- **Test count**: 16 Playwright tests (5 smoke + 11 app)
+- **Smoke test status**: PASSING
+- **Build**: Vite + React 19 + TypeScript, Firebase Hosting
+
 ### Sub-Memory Files
 
 | File                  | When to load                                |
