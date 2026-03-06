@@ -1,0 +1,44 @@
+{
+  "assumptions": [
+    {
+      "category": "stack",
+      "detail": "TanStack Query is unsupported — using React hooks with manual fetch and Firestore listeners instead"
+    },
+    {
+      "category": "stack",
+      "detail": "Zustand is unsupported — using React useState/useContext for state management instead"
+    },
+    {
+      "category": "infra",
+      "detail": "Firebase Cloud Functions are unsupported — copy count increment handled client-side via Firestore updateDoc"
+    },
+    {
+      "category": "infra",
+      "detail": "Cloud Scheduler is unsupported — sync is triggered manually via admin UI button instead of automatic hourly schedule"
+    },
+    {
+      "category": "infra",
+      "detail": "GitHub Actions CI/CD is unsupported — skipping CI/CD pipeline entirely"
+    },
+    {
+      "category": "feature",
+      "detail": "Google Docs API / Google Drive API are unsupported — sync endpoints are stubbed; prompts are managed via manual CRUD"
+    },
+    {
+      "category": "feature",
+      "detail": "Algolia search uses client-side algoliasearch with provided API keys; falls back to client-side text filtering if Algolia index is empty or unavailable"
+    },
+    {
+      "category": "feature",
+      "detail": "Admin role is determined by a 'role' field in the Firestore 'users' collection — must be manually set to 'admin' in Firestore console"
+    },
+    {
+      "category": "infra",
+      "detail": "Default Firestore database is DATASTORE_MODE — using named database 'superprompt-library' in Firestore Native mode"
+    },
+    {
+      "category": "feature",
+      "detail": "Suppressed prompts carry suppressedManually flag as specified; sync stub respects this flag conceptually but sync is not operational without Google Docs API"
+    }
+  ]
+}
